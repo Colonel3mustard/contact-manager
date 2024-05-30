@@ -22,7 +22,7 @@
         "singleQuote": true,
         "bracketSameLine": true,
         "printWidth": 100,
-        "endOfLine": "lf",
+        "endOfLine": "auto",
         "overrides": [
           {
             "files": ["**/*.jsonc", ".eslintrc", ".prettierrc"],
