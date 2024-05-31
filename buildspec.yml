@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - npm install
+  build:
+    commands:
+      - npm run-script build
+artifacts:
+  files:
+    - ./*
+    - ./**/**
+
+  # Vue directory
+  base-directory: dist
