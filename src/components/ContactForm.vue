@@ -4,7 +4,7 @@
       <div class="picture">
         <img
           class="image"
-          :src="contact.photo !== '' ? contact.photo : getImage('../assets/BlankProfile.jpg')" />
+          :src="contact.photo !== '' ? contact.photo : getImage('/BlankProfile.jpg')" />
         <MustardInput
           class="imageInput"
           label="Upload Image"

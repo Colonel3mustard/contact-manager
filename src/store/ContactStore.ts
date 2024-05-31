@@ -31,7 +31,7 @@ export const useContactStore = defineStore('contact', {
               isPrimary: false,
             },
           ],
-          photo: getImage('../assets/Profile1.jpg'),
+          photo: getImage('/Profile1.jpg'),
           salutation: "Hi, I'm Greg!",
         },
         {
@@ -55,7 +55,7 @@ export const useContactStore = defineStore('contact', {
               isPrimary: false,
             },
           ],
-          photo: getImage('../assets/Profile2.jpg'),
+          photo: getImage('/Profile2.jpg'),
           salutation: "Hi, I'm Ann!",
         },
         {
@@ -79,7 +79,7 @@ export const useContactStore = defineStore('contact', {
               isPrimary: false,
             },
           ],
-          photo: getImage('../assets/Profile3.jpg'),
+          photo: getImage('/Profile3.jpg'),
           salutation: "Hi, I'm Amy!",
         },
         {
@@ -103,7 +103,7 @@ export const useContactStore = defineStore('contact', {
               isPrimary: false,
             },
           ],
-          photo: getImage('../assets/Profile4.jpg'),
+          photo: getImage('/Profile4.jpg'),
           salutation: "Hi, I'm Jen!",
         },
         {
@@ -127,7 +127,7 @@ export const useContactStore = defineStore('contact', {
               isPrimary: false,
             },
           ],
-          photo: getImage('../assets/Profile5.jpg'),
+          photo: getImage('/Profile5.jpg'),
           salutation: "Hi, I'm Tom!",
         },
         {
@@ -151,7 +151,7 @@ export const useContactStore = defineStore('contact', {
               isPrimary: false,
             },
           ],
-          photo: getImage('../assets/Profile6.jpg'),
+          photo: getImage('/Profile6.jpg'),
           salutation: "Hi, I'm Russell!",
         },
       ],
