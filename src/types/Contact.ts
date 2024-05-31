@@ -6,7 +6,7 @@ export interface Contact {
   lastName: string;
   photo: string;
   phoneNumbers: PhoneNumber[];
-  salution: string;
+  salutation: string;
 }
 
 export interface ContactList {

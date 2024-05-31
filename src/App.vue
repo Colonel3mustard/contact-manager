@@ -12,7 +12,7 @@ import 'mustard-component-framework/style.css';
 const navProps: NavItem[] = [
   { name: 'Home', link: '/' },
   { name: 'Contact List', link: '/list' },
-  { name: 'Create Contact', link: '/create' },
+  { name: 'Create Contact', link: '/createEdit' },
 ];
 const navTitle = 'Mustard Contacts';
 </script>

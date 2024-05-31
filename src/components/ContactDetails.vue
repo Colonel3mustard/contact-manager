@@ -2,7 +2,7 @@
   <div class="detailsPage">
     <img class="profilePic" :src="contact.photo" />
     <h1 class="name">{{ getContactDisplayName() }}</h1>
-    <h2 class="salutation">{{ contact.salution }}</h2>
+    <h2 class="salutation">{{ contact.salutation }}</h2>
     <div class="phoneList">
       <div v-for="(phone, index) in contact.phoneNumbers" :key="index">
         <div :class="PhoneNumberColorEnum[phone.type]">
@@ -14,15 +14,15 @@
     </div>
     <div class="buttons">
       <RouterLink :to="'/edit/' + contactId">
-        <MustardBtn label="Edit Contact" />
+        <MustardBtn label="Edit Contact" @click.prevent="editContact()" />
       </RouterLink>
-      <MustardBtn label="Delete Contact" @click="openDialog()" :loading />
+      <MustardBtn label="Delete Contact" @click.prevent="openDialog()" :loading />
     </div>
     <dialog aria-labelledby="dialogTitle">
       <h2 id="dialogTitle" class="h2">Are you sure you want to delete this contact?</h2>
       <div class="buttons">
-        <MustardBtn label="Confirm" @click="deleteContact()" />
-        <MustardBtn label="Cancel" @click="closeDialog()" />
+        <MustardBtn label="Confirm" @click.prevent="deleteContact()" />
+        <MustardBtn label="Cancel" @click.prevent="closeDialog()" />
       </div>
     </dialog>
   </div>
@@ -82,6 +82,10 @@ function closeDialog(): void {
   const dialog = document.querySelector('dialog');
   if (!dialog) return;
   dialog.close();
+}
+
+function editContact(): void {
+  router.push(`/createEdit/${contactId.value}`);
 }
 </script>
 

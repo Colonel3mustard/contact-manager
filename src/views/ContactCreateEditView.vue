@@ -1,5 +1,5 @@
 <template>
-  <ContactForm></ContactForm>
+  <ContactForm :id></ContactForm>
 </template>
 
 <script setup lang="ts">
