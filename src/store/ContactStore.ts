@@ -32,7 +32,7 @@ export const useContactStore = defineStore('contact', {
             },
           ],
           photo: getImage('../assets/Profile1.jpg'),
-          salution: "Hi, I'm Greg!",
+          salutation: "Hi, I'm Greg!",
         },
         {
           id: 2,
@@ -56,7 +56,7 @@ export const useContactStore = defineStore('contact', {
             },
           ],
           photo: getImage('../assets/Profile2.jpg'),
-          salution: "Hi, I'm Ann!",
+          salutation: "Hi, I'm Ann!",
         },
         {
           id: 3,
@@ -80,7 +80,7 @@ export const useContactStore = defineStore('contact', {
             },
           ],
           photo: getImage('../assets/Profile3.jpg'),
-          salution: "Hi, I'm Amy!",
+          salutation: "Hi, I'm Amy!",
         },
         {
           id: 4,
@@ -104,7 +104,7 @@ export const useContactStore = defineStore('contact', {
             },
           ],
           photo: getImage('../assets/Profile4.jpg'),
-          salution: "Hi, I'm Jen!",
+          salutation: "Hi, I'm Jen!",
         },
         {
           id: 5,
@@ -128,7 +128,7 @@ export const useContactStore = defineStore('contact', {
             },
           ],
           photo: getImage('../assets/Profile5.jpg'),
-          salution: "Hi, I'm Tom!",
+          salutation: "Hi, I'm Tom!",
         },
         {
           id: 6,
@@ -152,7 +152,7 @@ export const useContactStore = defineStore('contact', {
             },
           ],
           photo: getImage('../assets/Profile6.jpg'),
-          salution: "Hi, I'm Russell!",
+          salutation: "Hi, I'm Russell!",
         },
       ],
     };
@@ -183,6 +183,7 @@ export const useContactStore = defineStore('contact', {
   actions: {
     addContact(contact: Contact) {
       this.contacts.push(contact);
+      this.router.push('/details/' + contact.id);
     },
     deleteContact(id: number) {
       const index = this.contacts.findIndex((contact) => contact.id === id);
@@ -192,12 +193,13 @@ export const useContactStore = defineStore('contact', {
       this.contacts.splice(index, 1);
       this.router.push('/list');
     },
-    editContact(id: number, contact: Contact) {
-      const index = this.contacts.findIndex((contact) => contact.id === id);
+    editContact(editedContact: Contact) {
+      const index = this.contacts.findIndex((contact) => contact.id === editedContact.id);
       if (index === -1) {
         throw new Error('Contact not found');
       }
-      this.contacts[index] = contact;
+      this.contacts[index] = editedContact;
+      this.router.push('/details/' + editedContact.id);
     },
     deletePhoneNumber(id: number, phoneNumberIndex: number) {
       const index = this.contacts.findIndex((contact) => contact.id === id);

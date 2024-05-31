@@ -11,7 +11,7 @@ import NotFoundView from './views/NotFoundView.vue';
 
 const routes = [
   { path: '/', component: ContactHomeView },
-  { path: '/create/:id?', component: ContactCreateEditView, props: true },
+  { path: '/createEdit/:id?', component: ContactCreateEditView, props: true },
   { path: '/list', component: ContactListView },
   { path: '/details/:id', component: ContactDetailsView, props: true },
   { path: '/:pathMatch(.*)*', component: NotFoundView },
