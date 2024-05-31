@@ -1,7 +1,7 @@
 <template>
   <div>
     <MustardNavBar :title="navTitle" :items="navProps"></MustardNavBar>
-    <RouterView />
+    <RouterView class="body" />
   </div>
 </template>
 
@@ -17,4 +17,8 @@ const navProps: NavItem[] = [
 const navTitle = 'Mustard Contacts';
 </script>
 
-<style scoped></style>
+<style scoped>
+.body {
+  margin-top: 200px;
+}
+</style>
