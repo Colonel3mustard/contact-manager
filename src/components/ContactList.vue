@@ -7,11 +7,14 @@
       class="routerLink">
       <MustardCard :item="item" class="card"></MustardCard
     ></router-link>
+    <RouterLink to="/createEdit">
+      <MustardBtn label="Create Contact" />
+    </RouterLink>
   </div>
 </template>
 
 <script setup lang="ts">
-import { MustardCard } from 'mustard-component-framework';
+import { MustardBtn, MustardCard } from 'mustard-component-framework';
 import { useContactStore } from '../store/ContactStore';
 
 const contactStore = useContactStore();

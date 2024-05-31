@@ -1,19 +1,20 @@
 <template>
   <form class="form">
-    <div class="picture">
-      <img
-        class="image"
-        :src="contact.photo !== '' ? contact.photo : getImage('../assets/BlankProfile.jpg')" />
-      <MustardInput
-        class="imageInput"
-        label="Upload Image"
-        type="file"
-        @fileChange="fileChange"
-        v-model="fileModel" />
+    <div class="imgAndNames">
+      <div class="picture">
+        <img
+          class="image"
+          :src="contact.photo !== '' ? contact.photo : getImage('../assets/BlankProfile.jpg')" />
+        <MustardInput
+          class="imageInput"
+          label="Upload Image"
+          type="file"
+          @fileChange="fileChange"
+          v-model="fileModel" />
+      </div>
+      <MustardInput label="First Name" type="text" v-model="contact.firstName" required />
+      <MustardInput label="Last Name" type="text" v-model="contact.lastName" required />
     </div>
-    <MustardInput label="First Name" type="text" v-model="contact.firstName" required />
-    <MustardInput label="Last Name" type="text" v-model="contact.lastName" required />
-
     <div class="phoneNumbers" v-for="(number, index) in contact.phoneNumbers" :key="index">
       <div class="phoneNumber">
         <MustardInput
@@ -33,11 +34,11 @@
         <MustardBtn class="deleteButton" label="Delete" @click.prevent="deletePhoneNumber(index)" />
       </div>
     </div>
-    <div class="buttons">
+    <div>
       <MustardBtn label="Add Phone Number" @click.prevent="addPhoneNumber()" />
     </div>
     <MustardInput label="Salutation" type="text" v-model="contact.salutation" />
-    <div class="buttons">
+    <div>
       <MustardBtn label="Save Contact" @click.prevent="saveContact()" />
       <MustardBtn label="Cancel" @click.prevent="cancelEdit()" />
     </div>
@@ -155,11 +156,19 @@ function canSave(): boolean {
 }
 
 function cancelEdit(): void {
-  router.push('/details/' + contact.value.id);
+  if (props.id) {
+    router.push('/details/' + contact.value.id);
+  } else {
+    router.push('/list');
+  }
 }
 </script>
 
 <style scoped>
+.phoneNumbers {
+  margin: 0 0 5px 380px;
+}
+
 .phoneNumber {
   display: inline-flex;
   flex-direction: row;
@@ -180,12 +189,6 @@ function cancelEdit(): void {
   margin-top: 15px;
 }
 
-.form {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
 .picture {
   display: inline-flex;
   flex-direction: column;
@@ -200,5 +203,11 @@ function cancelEdit(): void {
   height: auto;
   border-radius: 20px;
   border: 5px solid #003566;
+}
+.imgAndNames {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
 }
 </style>

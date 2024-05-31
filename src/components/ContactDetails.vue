@@ -13,8 +13,8 @@
       </div>
     </div>
     <div class="buttons">
-      <RouterLink :to="'/edit/' + contactId">
-        <MustardBtn label="Edit Contact" @click.prevent="editContact()" />
+      <RouterLink :to="'/createEdit/' + contactId">
+        <MustardBtn label="Edit Contact" />
       </RouterLink>
       <MustardBtn label="Delete Contact" @click.prevent="openDialog()" :loading />
     </div>
@@ -82,10 +82,6 @@ function closeDialog(): void {
   const dialog = document.querySelector('dialog');
   if (!dialog) return;
   dialog.close();
-}
-
-function editContact(): void {
-  router.push(`/createEdit/${contactId.value}`);
 }
 </script>
 
