@@ -1,9 +1,9 @@
-import { Card } from 'mustard-component-framework';
 import { defineStore } from 'pinia';
+import { Contact, ContactCard, PhoneNumberTypeEnum } from '../types/Contact';
 import { getImage } from '../utils/contactUtils';
 
 interface State {
-  contacts: Card[];
+  contacts: Contact[];
 }
 
 export const useContactStore = defineStore('contact', {
@@ -11,52 +11,200 @@ export const useContactStore = defineStore('contact', {
     return {
       contacts: [
         {
-          title: 'Greg Bennett',
-          subtitle: '(626) 485-2957',
-          imgSrc: getImage('../assets/Profile1.jpg'),
+          id: 1,
+          firstName: 'Greg',
+          lastName: 'Harris',
+          phoneNumbers: [
+            {
+              type: PhoneNumberTypeEnum.Cell,
+              number: '(626) 485-2957',
+              isPrimary: true,
+            },
+            {
+              type: PhoneNumberTypeEnum.Home,
+              number: '(626) 485-2957',
+              isPrimary: false,
+            },
+            {
+              type: PhoneNumberTypeEnum.Work,
+              number: '(626) 485-2957',
+              isPrimary: false,
+            },
+          ],
+          photo: getImage('../assets/Profile1.jpg'),
+          salution: "Hi, I'm Greg!",
         },
         {
-          title: 'Ann Johnson',
-          subtitle: '(513) 903-8042',
-          imgSrc: getImage('../assets/Profile2.jpg'),
+          id: 2,
+          firstName: 'Ann',
+          lastName: 'Johnson',
+          phoneNumbers: [
+            {
+              type: PhoneNumberTypeEnum.Cell,
+              number: '(513) 903-8042',
+              isPrimary: true,
+            },
+            {
+              type: PhoneNumberTypeEnum.Home,
+              number: '(513) 903-8042',
+              isPrimary: false,
+            },
+            {
+              type: PhoneNumberTypeEnum.Work,
+              number: '(513) 903-8042',
+              isPrimary: false,
+            },
+          ],
+          photo: getImage('../assets/Profile2.jpg'),
+          salution: "Hi, I'm Ann!",
         },
         {
-          title: 'Amy Tanner',
-          subtitle: '(513) 967-3951',
-          imgSrc: getImage('../assets/Profile3.jpg'),
+          id: 3,
+          firstName: 'Amy',
+          lastName: 'Tanner',
+          phoneNumbers: [
+            {
+              type: PhoneNumberTypeEnum.Cell,
+              number: '(513) 967-3951',
+              isPrimary: true,
+            },
+            {
+              type: PhoneNumberTypeEnum.Home,
+              number: '(513) 967-3951',
+              isPrimary: false,
+            },
+            {
+              type: PhoneNumberTypeEnum.Work,
+              number: '(513) 967-3951',
+              isPrimary: false,
+            },
+          ],
+          photo: getImage('../assets/Profile3.jpg'),
+          salution: "Hi, I'm Amy!",
         },
         {
-          title: 'Jen Riley',
-          subtitle: '(513) 339-9935',
-          imgSrc: getImage('../assets/Profile4.jpg'),
+          id: 4,
+          firstName: 'Jen',
+          lastName: 'Riley',
+          phoneNumbers: [
+            {
+              type: PhoneNumberTypeEnum.Cell,
+              number: '(513) 339-9935',
+              isPrimary: true,
+            },
+            {
+              type: PhoneNumberTypeEnum.Home,
+              number: '(513) 339-9936',
+              isPrimary: false,
+            },
+            {
+              type: PhoneNumberTypeEnum.Work,
+              number: '(513) 339-9937',
+              isPrimary: false,
+            },
+          ],
+          photo: getImage('../assets/Profile4.jpg'),
+          salution: "Hi, I'm Jen!",
         },
         {
-          title: 'Tom Jones',
-          subtitle: '(513) 069-4886',
-          imgSrc: getImage('../assets/Profile5.jpg'),
+          id: 5,
+          firstName: 'Tom',
+          lastName: 'Jones',
+          phoneNumbers: [
+            {
+              type: PhoneNumberTypeEnum.Cell,
+              number: '(513) 069-4886',
+              isPrimary: true,
+            },
+            {
+              type: PhoneNumberTypeEnum.Home,
+              number: '(513) 069-4887',
+              isPrimary: false,
+            },
+            {
+              type: PhoneNumberTypeEnum.Work,
+              number: '(513) 069-4888',
+              isPrimary: false,
+            },
+          ],
+          photo: getImage('../assets/Profile5.jpg'),
+          salution: "Hi, I'm Tom!",
         },
         {
-          title: 'Russell Thompson',
-          subtitle: '(626) 445-2217',
-          imgSrc: getImage('../assets/Profile6.jpg'),
+          id: 6,
+          firstName: 'Russell',
+          lastName: 'Thompson',
+          phoneNumbers: [
+            {
+              type: PhoneNumberTypeEnum.Cell,
+              number: '(626) 445-2217',
+              isPrimary: true,
+            },
+            {
+              type: PhoneNumberTypeEnum.Home,
+              number: '(626) 445-2218',
+              isPrimary: false,
+            },
+            {
+              type: PhoneNumberTypeEnum.Work,
+              number: '(626) 445-2219',
+              isPrimary: false,
+            },
+          ],
+          photo: getImage('../assets/Profile6.jpg'),
+          salution: "Hi, I'm Russell!",
         },
       ],
     };
   },
   getters: {
-    getContacts(state): Card[] {
-      return state.contacts;
+    getContactsList(state): ContactCard[] {
+      return state.contacts.map((contact) => {
+        const primaryNumber = contact.phoneNumbers.find((phoneNumber) => phoneNumber.isPrimary);
+        const card: ContactCard = {
+          id: contact.id,
+          title: `${contact.firstName} ${contact.lastName}`,
+          subtitle: primaryNumber?.number || 'No phone number',
+          imgSrc: contact.photo,
+        };
+        return card;
+      });
     },
+    getContactById:
+      (state) =>
+      (id: number): Contact | null => {
+        const index = state.contacts.findIndex((contact) => contact.id === id);
+        if (index === -1) {
+          return null;
+        }
+        return state.contacts[index];
+      },
   },
   actions: {
-    addContact(contact: Card) {
+    addContact(contact: Contact) {
       this.contacts.push(contact);
     },
-    deleteContact(index: number) {
+    deleteContact(id: number) {
+      const index = this.contacts.findIndex((contact) => contact.id === id);
+      if (index === -1) {
+        throw new Error('Contact not found');
+      }
       this.contacts.splice(index, 1);
+      this.router.push('/list');
     },
-    editContact(index: number, contact: Card) {
+    editContact(id: number, contact: Contact) {
+      const index = this.contacts.findIndex((contact) => contact.id === id);
+      if (index === -1) {
+        throw new Error('Contact not found');
+      }
       this.contacts[index] = contact;
+    },
+    deletePhoneNumber(id: number, phoneNumberIndex: number) {
+      const index = this.contacts.findIndex((contact) => contact.id === id);
+      if (index === -1) {
+        throw new Error('Contact not found');
+      }
+      this.contacts[index].phoneNumbers.splice(phoneNumberIndex, 1);
     },
   },
 });

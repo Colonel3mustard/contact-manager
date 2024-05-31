@@ -1,9 +1,10 @@
 <template>
   <div class="cardList">
     <router-link
-      :to="'/details/' + index"
-      v-for="(item, index) in contactStore.getContacts"
-      :key="index">
+      :to="'/details/' + item.id"
+      v-for="(item, index) in contactStore.getContactsList"
+      :key="index"
+      class="routerLink">
       <MustardCard :item="item" class="card"></MustardCard
     ></router-link>
   </div>
@@ -18,13 +19,19 @@ const contactStore = useContactStore();
 
 <style scoped>
 .cardList {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: flex-start;
   gap: 20px;
 }
 
 .card {
   width: 400px;
   cursor: pointer;
+}
+
+.routerLink {
+  width: 400px;
 }
 </style>
