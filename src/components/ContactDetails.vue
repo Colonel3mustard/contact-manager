@@ -113,6 +113,7 @@ function closeDialog(): void {
   border: 5px solid #1a936f;
   padding: 0px 10px;
   background-color: whitesmoke;
+  box-shadow: 0px 3px 0px lightgrey;
 }
 
 .phoneBlue {
@@ -121,6 +122,7 @@ function closeDialog(): void {
   border: 5px solid #258ea6;
   padding: 0px 10px;
   background-color: whitesmoke;
+  box-shadow: 0px 3px 0px lightgrey;
 }
 
 .phoneOrange {
@@ -129,6 +131,7 @@ function closeDialog(): void {
   border: 5px solid #ef8354;
   padding: 0px 10px;
   background-color: whitesmoke;
+  box-shadow: 0px 3px 0px lightgrey;
 }
 
 .name {
