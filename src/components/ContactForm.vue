@@ -20,7 +20,7 @@
         <MustardInput
           label="Phone Number"
           type="tel"
-          v-model="contact.phoneNumbers[index].number"
+          v-model.tel="contact.phoneNumbers[index].number"
           required />
         <MustardSelect
           name="Type:"

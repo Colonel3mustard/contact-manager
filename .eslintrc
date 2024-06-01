@@ -12,6 +12,7 @@
   ],
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
+    "vue/no-custom-modifiers-on-v-model": "off",
     "prettier/prettier": [
       "error",
       {
