@@ -82,6 +82,7 @@ const selectOptions: SelectOption[] = [
 ];
 
 function loadContact(): Contact {
+  // if id is passed in, load the contact with that id
   if (props.id) {
     const retValue = contactStore.getContactById(contactId.value);
     if (retValue) {
@@ -90,6 +91,7 @@ function loadContact(): Contact {
       router.push('/404');
       throw new Error('Contact not found');
     }
+    // if id is not passed in, create a new contact
   } else {
     const newContact: Contact = {
       id: getNewId(),
@@ -109,6 +111,7 @@ function loadContact(): Contact {
   }
 }
 
+// get the next id for a new contact
 function getNewId(): number {
   const contacts = contactStore.getContactsList;
   const maxId = contacts.reduce((acc, curr) => {
@@ -149,6 +152,7 @@ function saveContact(): void {
   }
 }
 
+// check if the form is valid
 function canSave(): boolean {
   const isOnlyOneNumberPrimary =
     contact.value.phoneNumbers.filter((number) => number.isPrimary).length === 1;
