@@ -166,6 +166,12 @@ function cancelEdit(): void {
     router.push('/list');
   }
 }
+
+defineExpose({
+  saveContact,
+  cancelEdit,
+  contact,
+});
 </script>
 
 <style scoped>
