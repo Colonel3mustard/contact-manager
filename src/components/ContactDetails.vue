@@ -1,6 +1,8 @@
 <template>
   <div class="detailsPage">
-    <img class="profilePic" :src="contact.photo" />
+    <img
+      class="profilePic"
+      :src="contact.photo !== '' ? contact.photo : getImage('/BlankProfile.jpg')" />
     <h1 class="name">{{ getContactDisplayName() }}</h1>
     <h2 class="salutation">{{ contact.salutation }}</h2>
     <div class="phoneList">
@@ -34,6 +36,8 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useContactStore } from '../store/ContactStore';
 import { Contact, PhoneNumberColorEnum } from '../types/Contact';
+import { getImage } from '../utils/contactUtils';
+
 interface Props {
   id: string;
 }
