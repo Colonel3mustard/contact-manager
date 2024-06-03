@@ -2,7 +2,7 @@ import { createPinia } from 'pinia';
 import { createApp, markRaw } from 'vue';
 import { Router } from 'vue-router';
 import App from './App.vue';
-import router from './router/router';
+import router from './router/Router';
 import './style.css';
 
 declare module 'pinia' {
